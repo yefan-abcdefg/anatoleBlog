@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        laravel5.4 数据库迁移、填充数据跑坑 · 喵咪云翳的博客
+        
+    </title>
+    <link rel="icon" href= /favicon.ico>
+    <!-- 提前加载place holder  -->
+    <style>
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url('/font/Oswald-Regular.ttf');
+        }
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('/font/Source Sans Pro.woff'),
+            url('/font/Source Sans Pro.woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0px;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2s ease-in-out 0s 15;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        99% {
+            transform: translate3d(0, 0, 0);
+        }
+        99.1% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(-226px, 0, 0);
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c2e692c5407f95609121a9d80bd24510";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+        <div class="toggle-banner">
+            <div class="blog-title">
+                <a href="/" >喵咪云翳</a>
+            </div>
+            <div class="post-banner">
+                <span class="post-name">laravel5.4 数据库迁移、填充数据跑坑</span>
+            </div>
+        </div>
+    </div>
+    
+    <a class="home-link" href=/>喵咪云翳</a>
+</header>
+    
+    
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+    
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            laravel5.4 数据库迁移、填充数据跑坑
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+        </p>
+        <!-- 404 -->
+        
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/10/16</span>
+            </div>
+            <!-- 
+
+<div class="post-share iconfont-archer">
+    <ul class="share-box" data-href = "/2017/10/16/migration-seeder-laravel54/" data-title = "laravel5.4 数据库迁移、填充数据跑坑" >
+        <li class="to-weibo">分享到微博</li>
+        <li class="to-wechat">分享到微信</li>
+        <li class="to-qq">分享到QQ</li>
+        <li class="to-twitter">分享到twitter</li>
+    </ul>
+</div> -->
+        
+    </div>
+</div>
+        <div class="container">
+            <main class="main post-page">
+    <div class="qr-mask"></div>
+<div class="QRcode-box">
+    <p>扫描二维码分享</p>
+    <div class="QRcode-close">×</div>
+</div>
+    <article class="article-entry">
+        <p>Author：云师<br>注：目前只适用于laravel5.4   </p>
+<h2 id="No-01-数据库-——-迁移"><a href="#No-01-数据库-——-迁移" class="headerlink" title="No.01 数据库 —— 迁移"></a>No.01 数据库 —— 迁移</h2><h4 id="1、开发前说明："><a href="#1、开发前说明：" class="headerlink" title="1、开发前说明："></a>1、开发前说明：</h4><p>调试的时候千万不要连测试环境、线上环境的库，先自己本地的试一下，切换env数据库配置。</p>
+<h4 id="2、5-4版本的数据迁移基本命令地址："><a href="#2、5-4版本的数据迁移基本命令地址：" class="headerlink" title="2、5.4版本的数据迁移基本命令地址："></a>2、5.4版本的数据迁移基本命令地址：</h4><p><a href="http://laravelacademy.org/post/6964.html" title="5.4版本的数据迁移基本命令地址" target="_blank" rel="external">http://laravelacademy.org/post/6964.html</a></p>
+<h4 id="3、规范："><a href="#3、规范：" class="headerlink" title="3、规范："></a>3、规范：</h4><p>迁移文件：</p>
+<ul>
+<li>有关新表独立一个迁移文件</li>
+<li>所有字段改动、表名改动建一个迁移文件，具体看【5、使用场景】下的【(5)、迁移调试】</li>
+</ul>
+<p>命名规则：</p>
+<ul>
+<li><p>新增数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:migration create_表名_table</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:migration add_column_表名_table</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加外键（特殊、需要独立\添加外键表建完之后在写外键添加文件）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:migration add_foreign_keys_表名_table</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改字段（删、改）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:migration modify_column_表名_table</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改一系列表、字段（以services层区分）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:migration modify_series_of_修改业务描述(services层名称)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="4、迁移指令"><a href="#4、迁移指令" class="headerlink" title="4、迁移指令"></a>4、迁移指令</h4><p>执行所有未操作迁移文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan migrate</div></pre></td></tr></table></figure>
+<p>回滚上次迁移操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan migrate:rollback</div></pre></td></tr></table></figure>
+<p>回滚所有的迁移（会删掉所有表和数据）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan migrate:reset</div></pre></td></tr></table></figure>
+<p>删除数据库、重新创建它并将加载当前架构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan migrate:refresh</div></pre></td></tr></table></figure>
+<p>创建表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:migration create_users_table</div></pre></td></tr></table></figure>
+<p>添加字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:migration add_email_column_to_users_table</div></pre></td></tr></table></figure>
+<p>其他暂未用到操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">migrate:install</div><div class="line">migrate:make</div></pre></td></tr></table></figure>
+<h4 id="5、使用场景"><a href="#5、使用场景" class="headerlink" title="5、使用场景"></a>5、使用场景</h4><h5 id="1-、migrate文件路径：D-code-www-ideabuy-database-migrations"><a href="#1-、migrate文件路径：D-code-www-ideabuy-database-migrations" class="headerlink" title="(1)、migrate文件路径：D:\code\www\ideabuy\database\migrations"></a>(1)、migrate文件路径：D:\code\www\ideabuy\database\migrations</h5><p>执行表的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function up()</div></pre></td></tr></table></figure>
+<p>执行回滚每次写完都自己调试下up与down </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function down()</div></pre></td></tr></table></figure>
+<h5 id="2-、新建表-具体可以看项目里的例子-："><a href="#2-、新建表-具体可以看项目里的例子-：" class="headerlink" title="(2)、新建表(具体可以看项目里的例子)："></a>(2)、新建表(具体可以看项目里的例子)：</h5><p>执行 php artisan make:migration create<em>表前缀</em>表名_table 创建表迁移文件<br>内部操作，默认有配置前缀这边表名不用加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public function up()</div><div class="line">&#123;</div><div class="line">    Schema::create(&apos;encrypt_token&apos;, function(Blueprint $table)</div><div class="line">    &#123;</div><div class="line">        $table-&gt;integer(&apos;id&apos;, true);</div><div class="line">        $table-&gt;string(&apos;name&apos;, 128)-&gt;nullable()-&gt;comment(&apos;项目名&apos;);</div><div class="line">        $table-&gt;string(&apos;token&apos;, 128)-&gt;nullable()-&gt;comment(&apos;token值&apos;);</div><div class="line">        $table-&gt;string(&apos;publickey_path&apos;)-&gt;nullable()-&gt;comment(&apos;公钥路径&apos;);</div><div class="line">        $table-&gt;boolean(&apos;is_used&apos;)-&gt;default(1)-&gt;comment(&apos;是否适用&apos;);</div><div class="line">        $table-&gt;engine = &apos;MyISAM&apos;;</div><div class="line">        $table-&gt;comment = &apos;RSA加密、解密秘钥&apos;;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">	</div><div class="line">public function down()</div><div class="line">&#123;</div><div class="line">	Schema::drop(&apos;encrypt_token&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="3-、字段、索引等新增："><a href="#3-、字段、索引等新增：" class="headerlink" title="(3)、字段、索引等新增："></a>(3)、字段、索引等新增：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">public function up()</div><div class="line">&#123;</div><div class="line">    Schema::table(&apos;db_test&apos;, function(Blueprint $table)</div><div class="line">    &#123;</div><div class="line">        $table-&gt;dropUnique(&apos;openid&apos;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    Schema::table(&apos;db_test&apos;, function(Blueprint $table)</div><div class="line">    &#123;</div><div class="line">        $table-&gt;dropColumn([&apos;operate_type&apos;, &apos;operate_module&apos;, &apos;operate_name&apos;]);</div><div class="line">        $table-&gt;string(&apos;operate_target&apos;, 30)-&gt;comment(&apos;操作模块&apos;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function down()</div><div class="line">&#123;</div><div class="line">    Schema::table(&apos;db_test&apos;, function(Blueprint $table)</div><div class="line">    &#123;</div><div class="line">        $table-&gt;unique(&apos;openid&apos;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    Schema::table(&apos;db_test&apos;, function(Blueprint $table)</div><div class="line">    &#123;</div><div class="line">        $table-&gt;boolean(&apos;operate_type&apos;)-&gt;default(0)-&gt;comment(&apos;数据操作类型(1增加 2删除 3修改 4查看 5登录)&apos;);</div><div class="line">        $table-&gt;string(&apos;operate_module&apos;, 30)-&gt;comment(&apos;操作模块&apos;);</div><div class="line">        $table-&gt;string(&apos;operate_name&apos;, 30)-&gt;comment(&apos;操作名称&apos;);</div><div class="line">        $table-&gt;dropColumn(&apos;operate_target&apos;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="4-、表名修改：例子来源-消息模板表的修改"><a href="#4-、表名修改：例子来源-消息模板表的修改" class="headerlink" title="(4)、表名修改：例子来源\消息模板表的修改"></a>(4)、表名修改：例子来源\消息模板表的修改</h5><p>实现功能 =&gt; 修改消息模板、消息模板关键字表名以及新增字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">public function up()</div><div class="line">&#123;</div><div class="line">    if ( Schema::hasTable(&apos;system_sms_template&apos;) ) &#123;</div><div class="line">        if( Schema::hasTable(&apos;system_msg_template&apos;) )&#123;</div><div class="line">            Schema::dropIfExists(&apos;system_sms_template&apos;);</div><div class="line">        &#125;else&#123;</div><div class="line">            Schema::rename(&apos;system_sms_template&apos;, &apos;system_msg_template&apos;);</div><div class="line">            Schema::table(&apos;system_msg_template&apos;, function(Blueprint $table) &#123;</div><div class="line">                if (!Schema::hasColumn(&apos;system_msg_template&apos;, &apos;msg_tag&apos;)) &#123;</div><div class="line">                    $table-&gt;string(&apos;msg_tag&apos;,20)-&gt;nullable()-&gt;comment(&apos;短信标签&apos;);</div><div class="line">                &#125;</div><div class="line">                if (!Schema::hasColumn(&apos;system_msg_template&apos;, &apos;msg_tag&apos;)) &#123;</div><div class="line">                    $table-&gt;string(&apos;msg_type&apos;)-&gt;nullable()-&gt;comment(&apos;消息类型&apos;);</div><div class="line">                &#125;</div><div class="line">                if (!Schema::hasColumn(&apos;system_msg_template&apos;, &apos;msg_tag&apos;)) &#123;</div><div class="line">                    $table-&gt;string(&apos;msg_title&apos;)-&gt;nullable()-&gt;comment(&apos;消息标题&apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    if ( Schema::hasTable(&apos;system_sms_template_info&apos;) ) &#123;</div><div class="line">        if( Schema::hasTable(&apos;system_msg_template_info&apos;) )&#123;</div><div class="line">            Schema::dropIfExists(&apos;system_sms_template_info&apos;);</div><div class="line">        &#125;else&#123;</div><div class="line">            Schema::rename(&apos;system_sms_template_info&apos;, &apos;system_msg_template_info&apos;);</div><div class="line">            Schema::table(&apos;system_msg_template_info&apos;, function(Blueprint $table) &#123;</div><div class="line">                if (!Schema::hasColumn(&apos;system_msg_template_info&apos;, &apos;msg_tag&apos;)) &#123;</div><div class="line">                    $table-&gt;string(&apos;keyword_zh&apos;)-&gt;nullable()-&gt;default(&apos;&apos;)-&gt;comment(&apos;关键字中文注释&apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function down()</div><div class="line">&#123;</div><div class="line">    // 回滚判断</div><div class="line">    // 1、新表是否存在</div><div class="line">    // 2、原表（防止转移库发现原表还存在）=&gt; 存在 执行新表删除，不存在 执行改表操作后 重命名</div><div class="line">    if ( Schema::hasTable(&apos;system_msg_template&apos;) ) &#123;</div><div class="line">        if ( Schema::hasTable(&apos;system_sms_template&apos;) ) &#123;</div><div class="line">            Schema::dropIfExists(&apos;system_msg_template&apos;);</div><div class="line">        &#125;else&#123;</div><div class="line">            Schema::table(&apos;system_msg_template&apos;, function(Blueprint $table) &#123;</div><div class="line">                $table-&gt;dropColumn([&apos;msg_tag&apos;, &apos;msg_type&apos;, &apos;msg_title&apos;]);</div><div class="line">            &#125;);</div><div class="line">            Schema::rename(&apos;system_msg_template&apos;, &apos;system_sms_template&apos;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    if ( Schema::hasTable(&apos;system_msg_template_info&apos;) ) &#123;</div><div class="line">        if ( Schema::hasTable(&apos;system_sms_template_info&apos;) ) &#123;</div><div class="line">            Schema::dropIfExists(&apos;system_msg_template_info&apos;);</div><div class="line">        &#125;else&#123;</div><div class="line">            Schema::table(&apos;system_msg_template_info&apos;, function(Blueprint $table) &#123;</div><div class="line">                if (!Schema::hasColumn(&apos;system_msg_template_info&apos;, &apos;keyword_zh&apos;)) &#123;</div><div class="line">                    $table-&gt;dropColumn(&apos;keyword_zh&apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            Schema::rename(&apos;system_msg_template_info&apos;, &apos;system_sms_template_info&apos;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="5-、迁移调试："><a href="#5-、迁移调试：" class="headerlink" title="(5)、迁移调试："></a>(5)、迁移调试：</h5><ul>
+<li><p>新项目刚开始部署的时候多使用refresh\rollbck等命令确保迁移脚本没有问题。</p>
+</li>
+<li><p>项目迭代更新，每次有修改就写一个迁移文件 执行 php artisan migrate(执行所有未操作迁移文件) 就可以，切记不要使用refresh这会清空数据库内的数据。</p>
+</li>
+<li><p>如果你的项目还在开发阶段未部署到dev与test等线上环境，所有表字段修改都可以直接写到这个表的迁移文件中，如果在迭代开发了，就按照上一步的标准来。</p>
+</li>
+</ul>
+<h4 id="6、注意点："><a href="#6、注意点：" class="headerlink" title="6、注意点："></a>6、注意点：</h4><h5 id="1-、存储引擎："><a href="#1-、存储引擎：" class="headerlink" title="(1)、存储引擎："></a>(1)、存储引擎：</h5><p>一般固定的都是InnoDB，做迁移时可以不用添加，但如果用到的是MyISAM，请在代码末尾添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$table-&gt;engine = &apos;MyISAM&apos;;</div></pre></td></tr></table></figure>
+<h5 id="2-、表说明："><a href="#2-、表说明：" class="headerlink" title="(2)、表说明："></a>(2)、表说明：</h5><p>写法如下，但目前无法生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$table-&gt;comment = &apos;短消息记录表&apos;;</div></pre></td></tr></table></figure>
+<h5 id="3-、当你不确定原先表-字段是否存在时，可以先判断判断表-字段的存在性："><a href="#3-、当你不确定原先表-字段是否存在时，可以先判断判断表-字段的存在性：" class="headerlink" title="(3)、当你不确定原先表\字段是否存在时，可以先判断判断表\字段的存在性："></a>(3)、当你不确定原先表\字段是否存在时，可以先判断判断表\字段的存在性：</h5><p>判断表 =&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (Schema::hasTable(&apos;users&apos;)) &#123;</div><div class="line">    //</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>判断表中字段 =&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (Schema::hasColumn(&apos;users&apos;, &apos;email&apos;)) &#123;</div><div class="line">    //</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="4-、时间参数（数据库版本存在不兼容-mysql5-7默认值要0001-01-01才能用）"><a href="#4-、时间参数（数据库版本存在不兼容-mysql5-7默认值要0001-01-01才能用）" class="headerlink" title="(4)、时间参数（数据库版本存在不兼容 mysql5.7默认值要0001-01-01才能用）"></a>(4)、时间参数（数据库版本存在不兼容 mysql5.7默认值要<code>0001-01-01</code>才能用）</h5><pre><code>默认不要设置0000-00-00 00:00:00 直接default null
+</code></pre><p><del>(5)、关于 修改字段</del><br><del>添加扩展依赖</del><br><del>composer require doctrine/dbal</del><br><del>存在php版本兼容：php7.0以下不可用</del><br><del>解决方案一：</del><br><del>如果你的修改不能再php5.6.30中运行，请直接把你的修改写在对应表里（直接覆盖原字段），然后找运维（东哥）在dev\test等线上环境修改.</del><br><del>解决方案二：</del><br><del>运维这处理，弄个php7.0的环境导下项目连对应更新的库 执行迁移命令</del></p>
+<h2 id="No-02-数据库-——-填充数据"><a href="#No-02-数据库-——-填充数据" class="headerlink" title="No.02 数据库 —— 填充数据"></a>No.02 数据库 —— 填充数据</h2><p><a href="http://laravelacademy.org/post/6970.html" title="5.4填充数据教程地址" target="_blank" rel="external">http://laravelacademy.org/post/6970.html</a><br>单元测试添加数据时不要存在跟数据填充写的数据重复</p>
+<h4 id="1、数据填充文件地址"><a href="#1、数据填充文件地址" class="headerlink" title="1、数据填充文件地址"></a>1、数据填充文件地址</h4><p>路径地址：D:\code\www\ideabuy\database\seeds</p>
+<h4 id="2、命令"><a href="#2、命令" class="headerlink" title="2、命令"></a>2、命令</h4><p>数据填充文件创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:seeder UserTableSeeder</div></pre></td></tr></table></figure>
+<p>运行所有填充</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan db:seed</div></pre></td></tr></table></figure>
+<p>运行单个填充</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan db:seed --class=UserTableSeeder</div></pre></td></tr></table></figure>
+<h4 id="3、实例"><a href="#3、实例" class="headerlink" title="3、实例"></a>3、实例</h4><h6 id="1-、原生sql批量"><a href="#1-、原生sql批量" class="headerlink" title="(1)、原生sql批量"></a>(1)、原生sql批量</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public function run()</div><div class="line">&#123;</div><div class="line">    $data = [</div><div class="line">        [&apos;1&apos;, &apos;index&apos;, &apos;仪表盘&apos;, &apos;一级导航&apos;, &apos;0&apos;, &apos;1&apos;, &apos;/dashboard&apos;, &apos;2017-07-27 15:59:00&apos;, &apos;2017-08-02 15:17:43&apos;],</div><div class="line">        [&apos;2&apos;, &apos;contentManage&apos;, &apos;内容管理&apos;, &apos;一级导航&apos;, &apos;0&apos;, &apos;1&apos;, &apos;/content&apos;, &apos;2017-07-27 15:59:00&apos;, &apos;2017-08-12 10:40:33&apos;],</div><div class="line">        [&apos;3&apos;, &apos;adType&apos;, &apos;广告分类&apos;, &apos;控制器&apos;, &apos;2&apos;, &apos;2&apos;, &apos;/content/ad-type&apos;, &apos;2017-07-27 15:59:00&apos;, &apos;2017-07-27 15:59:00&apos;],</div><div class="line">    ];</div><div class="line">    foreach ($data as $k=&gt;$v) &#123;</div><div class="line">        DB::insert(</div><div class="line">            &apos;insert into wk_permissions (id,name,display_name,description,pid,level,path,created_at,updated_at) values (?,?,?,?,?,?,?,?,?)&apos;,</div><div class="line">            $data[$k]</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="2-、带键值（不推荐）"><a href="#2-、带键值（不推荐）" class="headerlink" title="(2)、带键值（不推荐）"></a>(2)、带键值（不推荐）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">DB::table(&apos;users&apos;)-&gt;insert(</div><div class="line">    [&apos;name&apos; =&gt; str_random(10),&apos;email&apos; =&gt; str_random(10).&apos;@gmail.com&apos;,&apos;password&apos; =&gt; bcrypt(&apos;secret&apos;),],</div><div class="line">    [&apos;name&apos; =&gt; str_random(10),&apos;email&apos; =&gt; str_random(10).&apos;@gmail.com&apos;,&apos;password&apos; =&gt; bcrypt(&apos;secret&apos;),]</div><div class="line">);</div></pre></td></tr></table></figure>
+<h6 id="3-、使用Eloquent-模型工厂"><a href="#3-、使用Eloquent-模型工厂" class="headerlink" title="(3)、使用Eloquent 模型工厂"></a>(3)、使用Eloquent 模型工厂</h6><p>待完善<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">###### (4)、高效迁移方法(结合第一种、第二种方法)</div><div class="line"></div><div class="line">```</div><div class="line">$data = [</div><div class="line">    [&apos;1&apos;, &apos;iPhone app&apos;, &apos;*******&apos;, &apos;rsa_key.pem&apos;, &apos;1&apos;],</div><div class="line">    [&apos;2&apos;, &apos;android app&apos;, &apos;*******&apos;, &apos;rsa_key_android.pem&apos;, &apos;1&apos;],</div><div class="line">];</div><div class="line"></div><div class="line">$field = [&apos;id&apos;,&apos;name&apos;,&apos;md5_token&apos;,&apos;path&apos;,&apos;is_used&apos;];</div><div class="line"></div><div class="line">DB::table(&apos;encrypt_token&apos;)-&gt;insert(sql_batch_str($field,$data));</div><div class="line">```</div><div class="line">```</div><div class="line">/**</div><div class="line"> * 批量插入SQL拼接</div><div class="line"> * @param $field</div><div class="line"> * @param $params</div><div class="line"> * @return array</div><div class="line"> */</div><div class="line">function sql_batch_str($field, $params) &#123;</div><div class="line">    $data = [];</div><div class="line">    foreach ($params as $key =&gt; $value) &#123;</div><div class="line">        $data_info = [];</div><div class="line">        foreach ($value as $k1 =&gt; $v1) &#123;</div><div class="line">            foreach ($field as $k2 =&gt; $v2) &#123;</div><div class="line">                if ($k1 == $k2) &#123;</div><div class="line">                    $data_info[$v2] = $v1;continue;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        $data[] = $data_info;</div><div class="line">    &#125;</div><div class="line">    return $data;</div><div class="line">&#125;</div><div class="line">```</div><div class="line"></div><div class="line">#### 4、具体实施</div><div class="line"></div><div class="line">思路： </div><div class="line">- 默认路径下有一个DatabaseSeeder的文件，执行 php artisan db:seed 统一调用这个类。  </div><div class="line">所以我们在同级目录下创建填充文件、写数据填充，然后DatabaseSeede类调用  </div><div class="line">代码：</div><div class="line"></div><div class="line">```</div><div class="line">class DatabaseSeeder extends Seeder</div><div class="line">&#123;</div><div class="line">    /**</div><div class="line">     * Run the database seeds.</div><div class="line">     *</div><div class="line">     * @return void</div><div class="line">     */</div><div class="line">    public function run()</div><div class="line">    &#123;</div><div class="line">         $this-&gt;call(UserTableSeeder::class);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;    </div><div class="line">```</div><div class="line"></div><div class="line"></div><div class="line">不断开发完善中，敬请期待</div></pre></td></tr></table></figure></p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="previous">
+                <a href= "/2017/10/16/phpunit-laravel/" title= 基于 Laravel 框架的 phpunit 单元测试爬坑记录 >
+                    <span>Previous Post</span>
+                    <span>基于 Laravel 框架的 phpunit 单元测试爬坑记录</span>
+                </a>
+            </li>
+        
+        
+            <li class="next">
+                <a href= "/2017/08/15/sidebar-tags/" title= hexo项目左侧tags提示 >
+                    <span>Next Post</span>
+                    <span>hexo项目左侧tags提示</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 来必力City版安装代码 -->
+
+    
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8yODQyOS81MDAw>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+
+<!-- City版安装代码已完成 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="emailto:598486505@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/yefan-abcdefg" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <a href="http://blog.sina.com.cn/u/5986635247" class="iconfont-archer weibo" target="_blank" title="weibo"></a>
+            
+        
+    
+        
+            
+                <a href="https://www.zhihu.com/people/ye-fan-64-2/activities" class="iconfont-archer zhihu" target="_blank" title="zhihu"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span>
+        <span
+            id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+        <span id="busuanzi_container_site_pv">Welcome, No. <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+    
+</footer>
+    </div>
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 5 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href= "/2018/03/19/google-overthewal-macos/" >Google Chrome浏览器翻墙-macos使用</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2017/10/19/google-chrome-browser-overthewall/" >Google Chrome浏览器翻墙</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2017/10/16/phpunit-laravel/" >基于 Laravel 框架的 phpunit 单元测试爬坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2017/10/16/migration-seeder-laravel54/" >laravel5.4 数据库迁移、填充数据跑坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href= "/2017/08/15/sidebar-tags/" >hexo项目左侧tags提示</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    <!--  browser-sync -->
+    <!-- <script id="__bs_script__">
+    //<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.12'><\/script>".replace("HOST", location.hostname));
+    //]]>
+    </script> -->
+</html>
+
+

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        基于 Laravel 框架的 phpunit 单元测试爬坑记录 · 喵咪云翳的博客
+        
+    </title>
+    <link rel="icon" href= /favicon.ico>
+    <!-- 提前加载place holder  -->
+    <style>
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url('/font/Oswald-Regular.ttf');
+        }
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('/font/Source Sans Pro.woff'),
+            url('/font/Source Sans Pro.woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0px;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2s ease-in-out 0s 15;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        99% {
+            transform: translate3d(0, 0, 0);
+        }
+        99.1% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(-226px, 0, 0);
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c2e692c5407f95609121a9d80bd24510";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+        <div class="toggle-banner">
+            <div class="blog-title">
+                <a href="/" >喵咪云翳</a>
+            </div>
+            <div class="post-banner">
+                <span class="post-name">基于 Laravel 框架的 phpunit 单元测试爬坑记录</span>
+            </div>
+        </div>
+    </div>
+    
+    <a class="home-link" href=/>喵咪云翳</a>
+</header>
+    
+    
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+    
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            基于 Laravel 框架的 phpunit 单元测试爬坑记录
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+        </p>
+        <!-- 404 -->
+        
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/10/16</span>
+            </div>
+            <!-- 
+
+<div class="post-share iconfont-archer">
+    <ul class="share-box" data-href = "/2017/10/16/phpunit-laravel/" data-title = "基于 Laravel 框架的 phpunit 单元测试爬坑记录" >
+        <li class="to-weibo">分享到微博</li>
+        <li class="to-wechat">分享到微信</li>
+        <li class="to-qq">分享到QQ</li>
+        <li class="to-twitter">分享到twitter</li>
+    </ul>
+</div> -->
+        
+    </div>
+</div>
+        <div class="container">
+            <main class="main post-page">
+    <div class="qr-mask"></div>
+<div class="QRcode-box">
+    <p>扫描二维码分享</p>
+    <div class="QRcode-close">×</div>
+</div>
+    <article class="article-entry">
+        <h3 id="基于-Laravel-框架的-phpunit-单元测试爬坑记录"><a href="#基于-Laravel-框架的-phpunit-单元测试爬坑记录" class="headerlink" title="基于 Laravel 框架的 phpunit 单元测试爬坑记录"></a>基于 Laravel 框架的 phpunit 单元测试爬坑记录</h3><h4 id="1、单元测试的目录结构"><a href="#1、单元测试的目录结构" class="headerlink" title="1、单元测试的目录结构"></a>1、单元测试的目录结构</h4><ul>
+<li><p>测试文件一般位于项目根目录下的 tests 文件夹或者 models 下的项目中的 tests 文件夹。</p>
+</li>
+<li><p>在命令行中执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php artisan make:test DemoTest //可以生成 DemoTest.php 测试文件</div><div class="line"></div><div class="line">//这种方式生成的测试文件创建在项目根目录下的 tests/Feature</div></pre></td></tr></table></figure>
+</li>
+<li><p>在命令行中执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">phpunit   //会执行所有 test 方法</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">phpunit  tests/Feature/BackendTest.php  //会执行所有 BackendTest.php 里的 test 方法</div></pre></td></tr></table></figure>
+<h4 id="2、测试代码编写"><a href="#2、测试代码编写" class="headerlink" title="2、测试代码编写"></a>2、测试代码编写</h4><ol>
+<li>带入参数请求访问接口</li>
+<li>获取返回值断言<h5 id="举个栗子："><a href="#举个栗子：" class="headerlink" title="举个栗子："></a>举个栗子：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class AccountTest extends TestCase</div><div class="line">//所有测试类必须基于TestCase</div><div class="line">&#123;</div><div class="line"> /**</div><div class="line">     * 测试用户信息详情页接口</div><div class="line">     * @return mixed</div><div class="line">  */</div><div class="line">//所有测试方法命名，必须以 test 小写开头命名</div><div class="line">//（或者在注释中写明标注 @test ）</div><div class="line">public function testuserinfo_detail()</div><div class="line">    &#123;</div><div class="line">        $response = $this-&gt;get(&apos;http://ideabuy.xin.cn/api/userinfo-detail&apos;,$this-&gt;authHeader)</div><div class="line">        // $this-&gt;assertEquals(&apos;ture&apos;,$response-&gt;getcontent());</div><div class="line">        //当下面断言失败时，将这行代码取消注释，将下面注释，上面代码最后加上分号，再次运行，即可看到报错具体信息。</div><div class="line">            -&gt;assertJsonFragment([</div><div class="line">                &apos;msg&apos;=&gt;&apos;查询成功&apos;,</div><div class="line">            //断言返回的JSON值中包含一个 msg：‘查询成功’ 的对象 </div><div class="line">            ]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p><strong>介绍几个接口访问方式</strong>：</p>
+<ul>
+<li>GET 请求</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">get($uri, array $headers = []);</div></pre></td></tr></table></figure>
+<ul>
+<li>POST 请求</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">post($uri, array $data = [], array $headers = []);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>JSON 请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">json(&apos;POST&apos;, $uri, $data, $headers);</div></pre></td></tr></table></figure>
+</li>
+<li><p>CALL 请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">call(&apos;PUT&apos;, $uri, $data, [], [], $server);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p><strong>获取接口返回值方法</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$response-&gt;getcontent();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$response-&gt;getOriginalContent();</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>获取接口返回值方法</strong>：<br>简单列几个常见的断言方法，具体更多的断言方法–<a href="https://phpunit.de/manual/6.3/zh_cn/appendixes.assertions.html" target="_blank" rel="external">点此跳转链接</a></p>
+<ul>
+<li>$this-&gt;assertJsonFragment($params)<br>// 判断返回的JSON数值里是否包含$params<br>当返回值有 json 格式的 msg 信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$this-&gt;assertJsonFragment([</div><div class="line">    &apos;msg&apos;=&gt;&apos;头像修改成功&apos;,</div><div class="line">]);</div></pre></td></tr></table></figure>
+<ul>
+<li>$this-&gt;assertJsonStructure($params);<br>// 判断返回的JSON数据里是否包含$params数据结构<br>当返回值中不存在 msg 时（例如用户详情查出来基本为 data 时）可以用来判断是否存在数据。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$this-&gt;assertJsonStructure([</div><div class="line">    &apos;data&apos;=&gt;[],</div><div class="line">]);</div></pre></td></tr></table></figure>
+<ul>
+<li>$this-&gt;assertEquals(1,$params);<br>//  断返回值是否与$params相同</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$this-&gt;assertEquals(1, $result[&apos;code&apos;]);</div></pre></td></tr></table></figure>
+<ul>
+<li>assertResponseOk();<br>// 断言客户端返回的响应状态码是否是200</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$this-&gt;assertResponseOk();</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="2、测试代码编写-1"><a href="#2、测试代码编写-1" class="headerlink" title="2、测试代码编写"></a>2、测试代码编写</h4><p>由于大部分接口都做了用户登录的判断，所以在对接口进行测试的时候需要带上用户登录的信息（token+版本信息）。</p>
+<ul>
+<li>获取token的时候（即模拟登陆的时候–userlogin方法）如果报 ==data== 错误，先检查一下本地环境是不是需要全拼路由才能访问接口。<br>例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$response = $this-&gt;get(&apos;http://ideabuy.xin.cn/backend/constype-list&apos;, $this-&gt;authHeader)</div></pre></td></tr></table></figure>
+<ul>
+<li>如果token可以打印的情况下，还报错。检查一下 setup 方法是否添加了刷新语句。<br>即：<br>例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$this-&gt;refreshApplication();</div></pre></td></tr></table></figure>
+<ul>
+<li>下面的代码举了一个userlogin登录的操作，backend登录可以仿照下面操作，在 Common 里的方法中添加一个adminlogin，然后继承这个类去调用登录后的token<br>嗯，我还是贴代码吧：  <h6 id="路径：test-common-ApiTestCase-php"><a href="#路径：test-common-ApiTestCase-php" class="headerlink" title="==路径：test/common/ApiTestCase.php=="></a>==路径：test/common/ApiTestCase.php==</h6></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public function adminLogin($params = [])</div><div class="line">&#123;</div><div class="line">    $response = $this-&gt;post(</div><div class="line">        &apos;http://ideabuy.xin.cn/backend/admin-login&apos;,</div><div class="line">        $params</div><div class="line">    );</div><div class="line"></div><div class="line">    $admins = $response-&gt;getOriginalContent();</div><div class="line"></div><div class="line">    return $admins;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="路径：test-BackendTest-php"><a href="#路径：test-BackendTest-php" class="headerlink" title="==路径：test/BackendTest.php=="></a>==路径：test/BackendTest.php==</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public function setUp()</div><div class="line">&#123;</div><div class="line">    parent::setUp();</div><div class="line"></div><div class="line">    $this-&gt;params = $this-&gt;readyApiParams();</div><div class="line">    $admin = $this-&gt;adminLogin($this-&gt;params[&apos;login&apos;]);</div><div class="line">    $this-&gt;admin = $admin;</div><div class="line">    $this-&gt;authHeader = $this-&gt;headers($admin);</div><div class="line"></div><div class="line">    $this-&gt;refreshApplication();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>接下来在你写的test方法里的头部信息就可以直接$this-&gt;authHeader 进行调用了！<br>类似于这样：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$response = $this-&gt;get(&apos;http://ideabuy.xin.cn/backend/order-detail?order_id=282&apos;,  $this-&gt;authHeader)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h4 id="附上登录用例代码："><a href="#附上登录用例代码：" class="headerlink" title="附上登录用例代码："></a>附上登录用例代码：</h4><h6 id="路径：test-common-ApiTestCase-php-1"><a href="#路径：test-common-ApiTestCase-php-1" class="headerlink" title="==路径：test/common/ApiTestCase.php=="></a>==路径：test/common/ApiTestCase.php==</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">namespace Modules\Api\Tests\Common;</div><div class="line"></div><div class="line">use Tests\TestCase;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Class ApiTestCase</div><div class="line"> * @package Modules\Api\Tests\Common</div><div class="line"> */</div><div class="line">class ApiTestCase extends TestCase</div><div class="line">&#123;</div><div class="line">    /**</div><div class="line">     * User login</div><div class="line">     * @param array $params</div><div class="line">     * @return mixed</div><div class="line">     */</div><div class="line">    public function userLogin($params = [])</div><div class="line">    &#123;</div><div class="line">        $response = $this-&gt;post(</div><div class="line">        #路由看个人环境配置是否需要加上 http://ideabuy.xin.cn</div><div class="line">            &apos;http://ideabuy.xin.cn/api/user-login&apos;,</div><div class="line">            $params,</div><div class="line">        #调用下面拼接token的方法</div><div class="line">            $this-&gt;headers()</div><div class="line">        );</div><div class="line"></div><div class="line">        $users = $response-&gt;getOriginalContent();</div><div class="line"></div><div class="line">        return $users;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Setting request header</div><div class="line">     * @param null $user</div><div class="line">     * @param array $addition</div><div class="line">     * @return array</div><div class="line">     */</div><div class="line">    protected function headers($user = null, $addition = [])</div><div class="line">    &#123;</div><div class="line">        #添加版本号头部信息</div><div class="line">        $headers = [&apos;Accept&apos; =&gt; &apos;application/vnd.ideabuy.v1+json&apos;];</div><div class="line">        #拼接 token</div><div class="line">        if (!is_null($user)) &#123;</div><div class="line">            $headers[&apos;Authorization&apos;] = &apos;Bearer &apos;.$user[&apos;data&apos;][&apos;token&apos;];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if($addition)&#123;</div><div class="line">            $headers = array_merge($headers,$addition);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return $headers;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h6 id="路径：test-AccountTest-php"><a href="#路径：test-AccountTest-php" class="headerlink" title="==路径：test/AccountTest.php=="></a>==路径：test/AccountTest.php==</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">namespace Modules\Api\Tests;</div><div class="line"></div><div class="line">use Modules\Api\Tests\Common\ApiTestCase;</div><div class="line"></div><div class="line">class AccountTest extends ApiTestCase</div><div class="line">&#123;</div><div class="line">    public $authHeader;</div><div class="line">    public $params;</div><div class="line">    public $data;</div><div class="line">    public $user;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * ready for data &amp; params</div><div class="line">     */</div><div class="line">    public function setUp()</div><div class="line">    &#123;</div><div class="line">        #每个test方法之前都会调用一次这个方法</div><div class="line">        parent::setUp();</div><div class="line"></div><div class="line">        $this-&gt;params = $this-&gt;readyApiParams();</div><div class="line">        /** Get auth info include token  */</div><div class="line">        #调用用户登录的操作</div><div class="line">        $user = $this-&gt;userLogin($this-&gt;params[&apos;login&apos;]);</div><div class="line">        $this-&gt;user = $user;</div><div class="line">        #获取用户 token</div><div class="line">        $this-&gt;authHeader = $this-&gt;headers($user);</div><div class="line"></div><div class="line">        #刷新应用。该操作由TestCase的setup()方法自动调用，不然会使用过期的token</div><div class="line">        $this-&gt;refreshApplication();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * Ready for test params</div><div class="line">     */</div><div class="line">    protected function readyApiParams()</div><div class="line">    &#123;</div><div class="line">        #这个方法用来放test里需要的参数</div><div class="line">        $params = [];</div><div class="line"></div><div class="line">        /** login params for test **/</div><div class="line"></div><div class="line">        $login = [</div><div class="line">            &apos;user_mobile&apos; =&gt; &apos;13777979098&apos;,</div><div class="line">            &apos;user_password&apos; =&gt; &apos;a12345678&apos;</div><div class="line">        ];</div><div class="line">        $params[&apos;login&apos;] = $login;</div><div class="line"></div><div class="line">        /** register user params for test **/</div><div class="line"></div><div class="line">        $register = [</div><div class="line">            &apos;user_mobile&apos; =&gt; &apos;13777979098&apos;,</div><div class="line">            &apos;user_password&apos; =&gt; &apos;a12345678&apos;,</div><div class="line">            &apos;confirm_password&apos; =&gt; &apos;a12345678&apos;,</div><div class="line">            &apos;code&apos; =&gt; &apos;1234&apos;</div><div class="line">        ];</div><div class="line">        $params[&apos;register&apos;] = $register;</div><div class="line"></div><div class="line">        /** setting user paypassword params for test **/</div><div class="line"></div><div class="line">        $payPassword = [&apos;pay_password&apos; =&gt; &apos;b11111111&apos;];</div><div class="line">        $params[&apos;payPassword&apos;] = $payPassword;</div><div class="line"></div><div class="line">        return $params;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Clean  test data</div><div class="line">     */</div><div class="line">    protected function cleanData()</div><div class="line">    &#123;</div><div class="line">        //todo logic data</div><div class="line">        //Artisan::call(&apos;migrate:reset&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * this is case for user login</div><div class="line">     */</div><div class="line">    public function testUserLogin()</div><div class="line">    &#123;</div><div class="line">        $this-&gt;assertEquals(1, $this-&gt;user[&apos;code&apos;]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * This is case for setting pay password</div><div class="line">     * @test</div><div class="line">     */</div><div class="line">    public function SetPayPassword()</div><div class="line">    &#123;</div><div class="line"></div><div class="line">        $response = $this-&gt;post(</div><div class="line">            &apos;http://ideabuy.xin.cn/api/user-setpaypwd&apos;,</div><div class="line">                $this-&gt;params[&apos;payPassword&apos;],</div><div class="line">                #获取token</div><div class="line">                $this-&gt;authHeader</div><div class="line">        );</div><div class="line"></div><div class="line">        $result = $response-&gt;getOriginalContent();</div><div class="line">        #getOriginalContent（）是将返回值转成数组，getcontent（）是直接将对象返回</div><div class="line">        $this-&gt;assertEquals(1, $result[&apos;code&apos;]);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * Drop something test data</div><div class="line">     */</div><div class="line">    public function tearDown()</div><div class="line">    &#123;</div><div class="line">        $this-&gt;cleanData();</div><div class="line"></div><div class="line">        parent::tearDown();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="previous">
+                <a href= "/2017/10/19/google-chrome-browser-overthewall/" title= Google Chrome浏览器翻墙 >
+                    <span>Previous Post</span>
+                    <span>Google Chrome浏览器翻墙</span>
+                </a>
+            </li>
+        
+        
+            <li class="next">
+                <a href= "/2017/10/16/migration-seeder-laravel54/" title= laravel5.4 数据库迁移、填充数据跑坑 >
+                    <span>Next Post</span>
+                    <span>laravel5.4 数据库迁移、填充数据跑坑</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 来必力City版安装代码 -->
+
+    
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8yODQyOS81MDAw>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+
+<!-- City版安装代码已完成 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="emailto:598486505@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/yefan-abcdefg" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <a href="http://blog.sina.com.cn/u/5986635247" class="iconfont-archer weibo" target="_blank" title="weibo"></a>
+            
+        
+    
+        
+            
+                <a href="https://www.zhihu.com/people/ye-fan-64-2/activities" class="iconfont-archer zhihu" target="_blank" title="zhihu"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span>
+        <span
+            id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+        <span id="busuanzi_container_site_pv">Welcome, No. <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+    
+</footer>
+    </div>
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 5 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href= "/2018/03/19/google-overthewal-macos/" >Google Chrome浏览器翻墙-macos使用</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2017/10/19/google-chrome-browser-overthewall/" >Google Chrome浏览器翻墙</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2017/10/16/phpunit-laravel/" >基于 Laravel 框架的 phpunit 单元测试爬坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2017/10/16/migration-seeder-laravel54/" >laravel5.4 数据库迁移、填充数据跑坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href= "/2017/08/15/sidebar-tags/" >hexo项目左侧tags提示</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    <!--  browser-sync -->
+    <!-- <script id="__bs_script__">
+    //<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.12'><\/script>".replace("HOST", location.hostname));
+    //]]>
+    </script> -->
+</html>
+
+

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        喵咪云翳的博客
+        
+    </title>
+    <link rel="icon" href= /favicon.ico>
+    <!-- 提前加载place holder  -->
+    <style>
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url('/font/Oswald-Regular.ttf');
+        }
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('/font/Source Sans Pro.woff'),
+            url('/font/Source Sans Pro.woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0px;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2s ease-in-out 0s 15;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        99% {
+            transform: translate3d(0, 0, 0);
+        }
+        99.1% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(-226px, 0, 0);
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c2e692c5407f95609121a9d80bd24510";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="four-zero-four-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <a class="home-link" href=/>喵咪云翳</a>
+</header>
+    
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/404.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            [404]
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            <p class="intro-subtitle"> </p>
+        
+        <!-- 文章页meta -->
+        
+    </div>
+</div>
+        <div class="container">
+            <main class="main index-page">
+    <div class="qr-mask"></div>
+<div class="QRcode-box">
+    <p>扫描二维码分享</p>
+    <div class="QRcode-close">×</div>
+</div>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2017/10/19/google-chrome-browser-overthewall/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            Google Chrome浏览器翻墙
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    1、拥有架设vpn的工具架设vpn需要购买，这两天闲着没事就去买了一个月玩玩，用的是搬瓦工的vps。
+搜索：搬瓦工VPS中文网_搬瓦工, BandwagonHost VPS。
+进入找到合适的vps并购买，支持支付宝，美元支付。当购买完还要去官网后台获取一些相关配置，目前的地址：https://bandwagonhost.com/
+2、安装vpn切换代理软件我这边用的是Shadowsocks代理软件，之前购买成功后邮箱会收到服务器IP、端口等信息，拿到之后填到代理软件中，不过现在我们还得去搬瓦工后台取其他数据才能使用。
+这边是说明电脑笔记本使用的，如果你要连接到云服务就要去相应的服务环境配...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/10/19</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2017/10/16/phpunit-laravel/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            基于 Laravel 框架的 phpunit 单元测试爬坑记录
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    基于 Laravel 框架的 phpunit 单元测试爬坑记录1、单元测试的目录结构
+测试文件一般位于项目根目录下的 tests 文件夹或者 models 下的项目中的 tests 文件夹。
+
+在命令行中执行以下命令：
+123php artisan make:test DemoTest //可以生成 DemoTest.php 测试文件//这种方式生成的测试文件创建在项目根目录下的 tests/Feature
+
+在命令行中执行以下命令：
+1phpunit   //会执行所有 test 方法
+
+
+1phpunit  tests/Feature/BackendTest.php  //会执行所有...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/10/16</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2017/10/16/migration-seeder-laravel54/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            laravel5.4 数据库迁移、填充数据跑坑
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    Author：云师注：目前只适用于laravel5.4   
+No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要连测试环境、线上环境的库，先自己本地的试一下，切换env数据库配置。
+2、5.4版本的数据迁移基本命令地址：http://laravelacademy.org/post/6964.html
+3、规范：迁移文件：
+
+有关新表独立一个迁移文件
+所有字段改动、表名改动建一个迁移文件，具体看【5、使用场景】下的【(5)、迁移调试】
+
+命名规则：
+
+新增数据库：
+1php artisan make:migration create_表名_table
+
+添加字段：
+1php ...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/10/16</span>
+                </div>
+            </div>
+        </article>
+    
+    <!-- paginator  -->
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="emailto:598486505@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/yefan-abcdefg" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <a href="http://blog.sina.com.cn/u/5986635247" class="iconfont-archer weibo" target="_blank" title="weibo"></a>
+            
+        
+    
+        
+            
+                <a href="https://www.zhihu.com/people/ye-fan-64-2/activities" class="iconfont-archer zhihu" target="_blank" title="zhihu"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span>
+        <span
+            id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+        <span id="busuanzi_container_site_pv">Welcome, No. <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+    
+</footer>
+    </div>
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 5 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/19</span><a class="archive-post-title" href= "/2018/03/19/google-overthewal-macos/" >Google Chrome浏览器翻墙-macos使用</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2017/10/19/google-chrome-browser-overthewall/" >Google Chrome浏览器翻墙</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2017/10/16/phpunit-laravel/" >基于 Laravel 框架的 phpunit 单元测试爬坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2017/10/16/migration-seeder-laravel54/" >laravel5.4 数据库迁移、填充数据跑坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href= "/2017/08/15/sidebar-tags/" >hexo项目左侧tags提示</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    <!--  browser-sync -->
+    <!-- <script id="__bs_script__">
+    //<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.12'><\/script>".replace("HOST", location.hostname));
+    //]]>
+    </script> -->
+</html>
+
+
