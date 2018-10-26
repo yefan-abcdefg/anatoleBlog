@@ -118,6 +118,45 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2017/10/16/migration-seeder-laravel54/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            laravel5.4 数据库迁移、填充数据跑坑
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    Author：云师注：目前只适用于laravel5.4   
+No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要连测试环境、线上环境的库，先自己本地的试一下，切换env数据库配置。
+2、5.4版本的数据迁移基本命令地址：http://laravelacademy.org/post/6964.html
+3、规范：迁移文件：
+
+有关新表独立一个迁移文件
+所有字段改动、表名改动建一个迁移文件，具体看【5、使用场景】下的【(5)、迁移调试】
+
+命名规则：
+
+新增数据库：
+1php artisan make:migration create_表名_table
+
+添加字段：
+1php ...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/10/16</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2017/08/15/sidebar-tags/" >
                 <div class="abstract-post-title">
                     <h2 class="abstract-title">
@@ -142,6 +181,10 @@
         </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/">#PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->

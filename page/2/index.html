@@ -69,10 +69,10 @@
     
 </head>
     
-        <body class="four-zero-four-body">
+        <body class="home-body">
     
     
-<header class="header">
+<header class="header index-header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
@@ -86,23 +86,28 @@
     <!-- 主页  -->
     
     
+    <!-- 文章页  -->
     
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/404.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/intro-desktop.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            [404]
+            喵咪云翳
+            <!-- 文章页  -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            <p class="intro-subtitle"> </p>
-        
+            
+                keep moving forward, for this effort.
+            
+            <!-- 文章页  -->
+            
         <!-- 文章页meta -->
         
     </div>
@@ -114,6 +119,45 @@
     <p>扫描二维码分享</p>
     <div class="QRcode-close">×</div>
 </div>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2017/10/16/migration-seeder-laravel54/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            laravel5.4 数据库迁移、填充数据跑坑
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    Author：云师注：目前只适用于laravel5.4   
+No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要连测试环境、线上环境的库，先自己本地的试一下，切换env数据库配置。
+2、5.4版本的数据迁移基本命令地址：http://laravelacademy.org/post/6964.html
+3、规范：迁移文件：
+
+有关新表独立一个迁移文件
+所有字段改动、表名改动建一个迁移文件，具体看【5、使用场景】下的【(5)、迁移调试】
+
+命名规则：
+
+新增数据库：
+1php artisan make:migration create_表名_table
+
+添加字段：
+1php ...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/10/16</span>
+                </div>
+            </div>
+        </article>
     
     
     
@@ -143,8 +187,63 @@
     
     <!-- paginator  -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/">#PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+    
 </main>
             <!-- profile -->
+            
+            <div class="profile">
+    <img class="profile-avatar" src= /avatar/Collage_Fotor_01.jpg >
+    <div class="profile-name">喵咪云翳</div>
+    
+    <div class="profile-signature">
+        on mines way
+    </div>
+    
+    
+    <div class="profile-social">
+        
+    
+        
+            
+                <a href="emailto:598486505@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/yefan-abcdefg" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <a href="http://blog.sina.com.cn/u/5986635247" class="iconfont-archer weibo" target="_blank" title="weibo"></a>
+            
+        
+    
+        
+            
+                <a href="https://www.zhihu.com/people/ye-fan-64-2/activities" class="iconfont-archer zhihu" target="_blank" title="zhihu"></a>
+            
+        
+    
+
+    </div>
+    
+    
+        <div class="friends">
+            <div>FRIENDS</div>
+            
+                <span>
+                    <a href= https://github.com/yefan-abcdefg target="_black">Ye Fan</a>
+                </span>
+            
+        </div>
+    
+</div>
             
         </div>
         <footer class="footer">

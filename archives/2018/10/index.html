@@ -118,17 +118,18 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2017/08/15/sidebar-tags/" >
+            <a class="content-show-full" href = "/2018/10/26/设计模式-php常用的三种设计模式的学习笔记/" >
                 <div class="abstract-post-title">
                     <h2 class="abstract-title">
                         <span>
-                            hexo项目左侧tags提示
+                            设计模式-php常用的三种设计模式的学习笔记
                         </span>
                     </h2>
                 </div>
                 <div class="abstract-content">
-                    文件：sidebar-tags.ejs
-12345678910111213141516171819202122232425262728293031323334&lt;div class=&quot;sidebar-tags&quot;&gt;    &lt;div class=&quot;sidebar-tags-name&quot;&gt;    &lt;% site.tags.each(function (tag) &#123; %&gt;        &lt;span class=&quot;sidebar-tag-name&quot;&gt;&lt;a href= &quot;...
+                    php设计模式：单例模式、工厂模式、观察者模式http://www.jquerycn.cn/a_16290
+一、单例模式
+所谓单例模式，即在应用程序中只会有这个类的一个实例存在。通常单例模式用在仅允许数据库访问对象的实例中，从而防止打开多个数据库连接。一个单例类应包括以下几点：和普通类不同，单例类不能被直接实例化，只能是由自身实例化。因此，要获得这样的限制效果，构造函数必须标记为private。要让单例类不被直接实例化而能起到作用，就必须为其提供这样的一个实例。因此，就必须要让单例类拥有一个能保存类的实例的私有静态成员变量和对应的一个能访问到实例的公共静态方法。在PHP中，为防止对单例类...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -136,7 +137,117 @@
                 
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/08/15</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/10/26</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/10/26/tp3.2框架在php7.0的lnmp下的两个问题/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            tp3.2框架在php7.0的lnmp下的两个问题
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    1、移动端接口提交json类型数据raw JSON(application/json)时 通过I(post.)或$_POST拿不到数据。
+分析原因：123$_POST 仅限于:当 HTTP POST 请求的 Content-Type 是 application/x-www-form-urlencoded 或 multipart/form-data 时，会将变量以关联数组形式传入当前脚本
+解决方法：12345如果你想要接收 Content-Type 为 application/json 的值, 需要判断 Header 手动解析解析方式大概就是: 通过 php://input 获得body,...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/10/26</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/10/26/PHP获取POST数据的三种方法/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            PHP获取POST数据的三种方法
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    1、方法一，$_POST
+1$_POST或$_REQUEST存放的是PHP以key=&gt;value的形式格式化以后的数据。
+2、方法二，使用file_get_contents(&quot;php://input&quot;)
+123456789对于未指定 Content-Type 的POST数据，则可以使用file_get_contents(&quot;php://input&quot;);来获取原始数据。 事实上，用PHP接收POST的任何数据均使用本方法。而不用考虑Content-Type，包括二进制文件流也是可行的。 同$HTTP_RAW_POST_DATA比起来，它给内存带来...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/10/26</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/10/25/苹果app审核需要ipv6地址/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            苹果app审核需要ipv6地址
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    苹果app审核通过需要ipv6地址并且保持心跳链接 shell脚本ping ipv61234567891011121314151617#!/bin/bash#note: ipv6 ping6 ipv6.google.comset -uecho &quot;----开始执行ping程序----&quot;ip=&apos;ipv6.google.com&apos;echo -n &quot;begin ping ipv6.google.com: &quot;count=20ping6 -c $count $ip &amp;&gt;/dev/null    if [ $? -eq 0 ]  ...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/10/25</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/10/25/个人博客-hexo+github/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            个人博客-hexo+github
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    首先要有gitgit for windows
+相关教程地址：搭建个人博客-hexo+github详细完整步骤http://blog.csdn.net/gdutxiaoxu/article/details/53576018http://blog.csdn.net/jzooo/article/details/46781805http://www.jianshu.com/p/017e01718d41http://www.cnblogs.com/MuYunyun/p/5927491.html
+运行node：
+1hexo s -g
+上传到github：
+1hexo clean &amp;&amp;...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/10/25</span>
                 </div>
             </div>
         </article>
