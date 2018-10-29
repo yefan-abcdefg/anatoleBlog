@@ -118,6 +118,41 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2017/10/16/phpunit-laravel/" >
+                <div class="abstract-post-title">
+                    <h2 class="abstract-title">
+                        <span>
+                            基于 Laravel 框架的 phpunit 单元测试爬坑记录
+                        </span>
+                    </h2>
+                </div>
+                <div class="abstract-content">
+                    基于 Laravel 框架的 phpunit 单元测试爬坑记录1、单元测试的目录结构
+测试文件一般位于项目根目录下的 tests 文件夹或者 models 下的项目中的 tests 文件夹。
+
+在命令行中执行以下命令：
+123php artisan make:test DemoTest //可以生成 DemoTest.php 测试文件//这种方式生成的测试文件创建在项目根目录下的 tests/Feature
+
+在命令行中执行以下命令：
+1phpunit   //会执行所有 test 方法
+
+
+1phpunit  tests/Feature/BackendTest.php  //会执行所有...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/10/16</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2017/10/16/migration-seeder-laravel54/" >
                 <div class="abstract-post-title">
                     <h2 class="abstract-title">
@@ -183,7 +218,7 @@ No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要�
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/">#PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+        <a class="extend prev" rel="prev" href="/archives/">#上一页</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
     </nav>
     
 </main>
@@ -242,8 +277,8 @@ No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要�
     <div class="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-category">
-            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
-            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>日志目录</span>
+           <!-- <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Archive/Tag</span> -->
         </div>
     </div>
     <div class="sidebar-content sidebar-content-show-archive">
@@ -390,26 +425,7 @@ No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 12 </div>
+    <div class="total-archive"> Total : 13 </div>
     
     <div class="post-archive">
     
@@ -421,12 +437,12 @@ No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/26</span><a class="archive-post-title" href= "/2018/10/26/设计模式-php常用的三种设计模式的学习笔记/" >设计模式-php常用的三种设计模式的学习笔记</a>
+            <span class="archive-post-date">10/29</span><a class="archive-post-title" href= "/2018/10/29/git分支管理指令/" >git分支管理指令</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/26</span><a class="archive-post-title" href= "/2018/10/26/PHP获取POST数据的三种方法/" >PHP获取POST数据的三种方法</a>
+            <span class="archive-post-date">10/26</span><a class="archive-post-title" href= "/2018/10/26/设计模式-php常用的三种设计模式的学习笔记/" >设计模式-php常用的三种设计模式的学习笔记</a>
         </li>
     
     
@@ -436,12 +452,17 @@ No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2018/10/25/苹果app审核需要ipv6地址/" >苹果app审核需要ipv6地址</a>
+            <span class="archive-post-date">10/26</span><a class="archive-post-title" href= "/2018/10/26/PHP获取POST数据的三种方法/" >PHP获取POST数据的三种方法</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2018/10/25/个人博客-hexo+github/" >个人博客-hexo+github</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2018/10/25/苹果app审核需要ipv6地址/" >苹果app审核需要ipv6地址</a>
         </li>
     
     
@@ -490,7 +511,7 @@ No.01 数据库 —— 迁移1、开发前说明：调试的时候千万不要�
     
     </div>
   </div>
-        <div class="sidebar-tags">
+        <!-- <div class="sidebar-tags">
     <div class="sidebar-tags-name">
     
     </div>
@@ -519,9 +540,9 @@ jsonContent:
     excerpt: false
     categories: false
     tags: true</pre>
-    </div> 
+    </div>
     <div class="sidebar-tag-list"></div>
-</div>
+</div> -->
     </div>
 </div> 
     <script>

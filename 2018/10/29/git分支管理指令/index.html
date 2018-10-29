@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        个人博客-hexo+github · 喵咪云翳的博客
+        git分支管理指令 · 喵咪云翳的博客
         
     </title>
     <link rel="icon" href= /favicon.ico>
@@ -83,7 +83,7 @@
                 <a href="/" >喵咪云翳</a>
             </div>
             <div class="post-banner">
-                <span class="post-name">个人博客-hexo+github</span>
+                <span class="post-name">git分支管理指令</span>
             </div>
         </div>
     </div>
@@ -107,7 +107,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            个人博客-hexo+github
+            git分支管理指令
             <!-- 404 -->
             
         </h1>
@@ -125,12 +125,12 @@
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/10/25</span>
+                <span class="post-intro-time">2018/10/29</span>
             </div>
             <!-- 
 
 <div class="post-share iconfont-archer">
-    <ul class="share-box" data-href = "/2018/10/25/个人博客-hexo+github/" data-title = "个人博客-hexo+github" >
+    <ul class="share-box" data-href = "/2018/10/29/git分支管理指令/" data-title = "git分支管理指令" >
         <li class="to-weibo">分享到微博</li>
         <li class="to-wechat">分享到微信</li>
         <li class="to-qq">分享到QQ</li>
@@ -148,33 +148,71 @@
     <div class="QRcode-close">×</div>
 </div>
     <article class="article-entry">
-        <p>首先要有git<br><a href="https://git-for-windows.github.io/" title="git for windows" target="_blank" rel="external">git for windows</a></p>
-<p>相关教程地址：<br><a href="http://www.jianshu.com/p/189fd945f38f" title="搭建个人博客-hexo+github详细完整步骤" target="_blank" rel="external">搭建个人博客-hexo+github详细完整步骤</a><br><a href="http://blog.csdn.net/gdutxiaoxu/article/details/53576018" target="_blank" rel="external">http://blog.csdn.net/gdutxiaoxu/article/details/53576018</a><br><a href="http://blog.csdn.net/jzooo/article/details/46781805" target="_blank" rel="external">http://blog.csdn.net/jzooo/article/details/46781805</a><br><a href="http://www.jianshu.com/p/017e01718d41" target="_blank" rel="external">http://www.jianshu.com/p/017e01718d41</a><br><a href="http://www.cnblogs.com/MuYunyun/p/5927491.html" target="_blank" rel="external">http://www.cnblogs.com/MuYunyun/p/5927491.html</a></p>
-<p>运行node：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s -g</div></pre></td></tr></table></figure>
-<p>上传到github：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>
-<p>git clone <a href="https://github.com/fi3ework/hexo-theme-archer.git" target="_blank" rel="external">https://github.com/fi3ework/hexo-theme-archer.git</a></p>
-<p><a href="http://yefan-abcdefg.github.io" target="_blank" rel="external">http://yefan-abcdefg.github.io</a></p>
-<p>yefan-abcdefg.github.ios</p>
-<p>Baymax</p>
+        <h1 id="git分支管理指令"><a href="#git分支管理指令" class="headerlink" title="git分支管理指令"></a>git分支管理指令</h1><hr>
+<p><a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6</a></p>
+<h4 id="git如何放弃所有本地修改"><a href="#git如何放弃所有本地修改" class="headerlink" title="git如何放弃所有本地修改"></a>git如何放弃所有本地修改</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git checkout . #本地所有修改的。没有的提交的，都返回到原来的状态</div><div class="line">git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</div><div class="line">git reset --hard HASH #返回到某个节点，不保留修改。</div><div class="line">git reset --soft HASH #返回到某个节点。保留修改</div></pre></td></tr></table></figure>
+<h4 id="Git-本地的撤销修改和删除操作"><a href="#Git-本地的撤销修改和删除操作" class="headerlink" title="Git 本地的撤销修改和删除操作"></a>Git 本地的撤销修改和删除操作</h4><p><a href="https://blog.csdn.net/zch501157081/article/details/51939854" target="_blank" rel="external">https://blog.csdn.net/zch501157081/article/details/51939854</a></p>
+<h4 id="远程分支建立"><a href="#远程分支建立" class="headerlink" title="远程分支建立"></a>远程分支建立</h4><p><a href="https://www.jianshu.com/p/ea1dab2de419" target="_blank" rel="external">https://www.jianshu.com/p/ea1dab2de419</a></p>
+<blockquote>
+<p>新建一个本地分支：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b yefan</div></pre></td></tr></table></figure>
+<blockquote>
+<p>把新建的本地分支push到远程服务器，远程分支与本地分支同名（当然可以随意起名）：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin yefan:yefan</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(1) git push --set-upstream origin yefan</div><div class="line">git branch --set-upstream-to origin/uniform-pay uniform-pay</div><div class="line">(2) git push origin</div><div class="line">git push --set-upstream origin stars-hobby-06-06</div></pre></td></tr></table></figure>
+<h4 id="git-删除本地分支和远程分支、本地代码回滚和远程代码库回滚"><a href="#git-删除本地分支和远程分支、本地代码回滚和远程代码库回滚" class="headerlink" title="git 删除本地分支和远程分支、本地代码回滚和远程代码库回滚"></a>git 删除本地分支和远程分支、本地代码回滚和远程代码库回滚</h4><blockquote>
+<p>【git 删除本地分支】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -D br</div></pre></td></tr></table></figure></p>
+<p>【git 删除远程分支】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :br  (origin 后面有空格)</div></pre></td></tr></table></figure></p>
+<p>【删除本地有但在远程库已经不存在的分支】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git remote show origin  ##可以查看远程库的一些信息，及与本地分支的信息</div><div class="line">git remote prune origin --dry-run ##查看哪些分支需要清理</div><div class="line">git remote prune origin ##清理</div><div class="line">git branch -vv ##无效本地分支</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="git代码库回滚-指的是将代码库某分支退回到以前的某个commit-id"><a href="#git代码库回滚-指的是将代码库某分支退回到以前的某个commit-id" class="headerlink" title="git代码库回滚: 指的是将代码库某分支退回到以前的某个commit id"></a>git代码库回滚: 指的是将代码库某分支退回到以前的某个commit id</h4><blockquote>
+<p>【本地代码库回滚】：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git reset --hard commit-id</div><div class="line"> #回滚到commit-id将</div><div class="line"> commit-id之后提交的commit都去除</div><div class="line">git reset --hard HEAD~3 #将最近3次的提交回滚</div></pre></td></tr></table></figure>
+<blockquote>
+<p>【远程代码库回滚】：</p>
+<p>这个是重点要说的内容，过程比本地回滚要复杂<br>应用场景：自动部署系统发布后发现问题，需要回滚到某一个commit，再重新发布<br>原理：先将本地分支退回到某个commit，删除远程分支，再重新push本地分支<br>操作步骤：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1、git checkout the_branch</div><div class="line">2、git pull</div><div class="line">3、git branch the_branch_backup //备份一下这个分支当前的情况</div><div class="line">4、git reset --hard the_commit_id //把the_branch本地回滚到the_commit_id</div><div class="line">5、git push origin :the_branch //删除远程 the_branch</div><div class="line">6、git push origin the_branch //用回滚后的本地分支重新建立远程分支</div><div class="line">7、git push origin :the_branch_backup //如果前面都成功了，删除这个备份分支</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果使用了gerrit做远程代码中心库和code review平台，需要确保操作git的用户具备分支的push权限，并且选择了 Force Push选项（在push权限设置里有这个选项）<br>另外，gerrit中心库是个bare库，将HEAD默认指向了master，因此master分支是不能进行删除操作的，最好不要选择删除master分支的策略，换用其他分支。如果一定要这样做，可以考虑到gerrit服务器上修改HEAD指针。。。不建议这样搞</p>
+</blockquote>
+<h4 id="Git-最佳实践：分支管理"><a href="#Git-最佳实践：分支管理" class="headerlink" title="Git 最佳实践：分支管理"></a>Git 最佳实践：分支管理</h4><p><a href="http://blog.jobbole.com/109466/" target="_blank" rel="external">http://blog.jobbole.com/109466/</a></p>
+<blockquote>
+<p>从 develop 分支建一个 feature 分支，并切换到 feature 分支</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b myfeature develop </div><div class="line">Switched to a new branch &quot;myfeature&quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>合并feature 分支到 develop</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git checkout develop</div><div class="line">Switched to branch &apos;develop&apos;</div><div class="line">$ git merge --no-ff myfeature</div><div class="line">Updating ea1b82a..05e9557</div><div class="line">(Summary of changes)</div><div class="line">$ git branch -d myfeature</div><div class="line">Deleted branch myfeature</div><div class="line">$ git push origin develop</div></pre></td></tr></table></figure>
+<h4 id="Git-fetch和git-pull的区别-解决Git报错-error-You-have-not-concluded-your-merge-MERGE-HEAD-exists"><a href="#Git-fetch和git-pull的区别-解决Git报错-error-You-have-not-concluded-your-merge-MERGE-HEAD-exists" class="headerlink" title="Git fetch和git pull的区别, 解决Git报错:error: You have not concluded your merge (MERGE_HEAD exists)."></a>Git fetch和git pull的区别, 解决Git报错:error: You have not concluded your merge (MERGE_HEAD exists).</h4><blockquote>
+<p>Git fetch和git pull的区别：都可以从远程获取最新版本到本地</p>
+<p>1.Git fetch:只是从远程获取最新版本到本地,不会merge(合并)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git fetch origin master </div><div class="line">//从远程的origin的master主分支上获取最新版本到origin/master分支上</div><div class="line"></div><div class="line">git log -p master..origin/master</div><div class="line">//比较本地的master分支和origin/master分支的区别</div><div class="line"></div><div class="line">git merge origin/master</div><div class="line">//合并</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.Git fetch:从远程获取最新版本并merge(合并)到本地<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git pull origin master</div><div class="line">//相当于进行了 git fetch 和 git merge两部操作</div></pre></td></tr></table></figure></p>
+<p>导致报错:<code>error: You have not concluded your merge (MERGE_HEAD exists)</code>.的原因可能是在以前pull下来的代码自动合并失败</p>
+<p>解决办法一:保留本地的更改,中止合并-&gt;重新合并-&gt;重新拉取</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git merge --abort</div><div class="line">git reset --merge</div><div class="line">git pull</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解决办法二:舍弃本地代码,远端版本覆盖本地版本(慎重)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git fetch --all</div><div class="line">git reset --hard origin/master</div><div class="line">git fetch</div></pre></td></tr></table></figure>
 
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="previous">
-                <a href= "/2018/10/25/苹果app审核需要ipv6地址/" title= 苹果app审核需要ipv6地址 >
-                    <span>Previous Post</span>
-                    <span>苹果app审核需要ipv6地址</span>
-                </a>
-            </li>
-        
         
             <li class="next">
-                <a href= "/2018/05/21/project-by-nginx-with-ip-port/" title= nginx 配置ip端口访问不同目录等相关 >
+                <a href= "/2018/10/26/设计模式-php常用的三种设计模式的学习笔记/" title= 设计模式-php常用的三种设计模式的学习笔记 >
                     <span>Next Post</span>
-                    <span>nginx 配置ip端口访问不同目录等相关</span>
+                    <span>设计模式-php常用的三种设计模式的学习笔记</span>
                 </a>
             </li>
         
